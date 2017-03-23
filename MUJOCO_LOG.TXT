@@ -1,0 +1,6 @@
+Thu Mar 23 19:59:14 2017
+ERROR: Missing or invalid license activation
+
+Thu Mar 23 20:00:42 2017
+ERROR: Missing or invalid license activation
+

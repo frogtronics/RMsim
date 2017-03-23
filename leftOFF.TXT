@@ -1,0 +1,1 @@
+Modify template file to match XL file.  Rename pos coordinates from body (fem, etc) to joint - have to change XL file too.
