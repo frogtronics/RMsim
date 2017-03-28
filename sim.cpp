@@ -750,7 +750,7 @@ void setcontrol(mjtNum time, mjtNum* ctrl, int nu)
     ctrl[0] = inputdata_inforces[counter][0];//ankle extensor force
     ctrl[1] = inputdata_inforces[counter][1];//knee servo position
     ctrl[2] = inputdata_inforces[counter][2];//hip extensor force
-    //printf(" %f \n", d->qpos[7] + m->qpos0[7]);
+    printf(" %f \n", d->qpos[7]);
     //printf("%f\n", d->ctrl[1]);
     }
 
@@ -792,6 +792,7 @@ void advance(void)
     double grf_z = d->qfrc_constraint[2]; // z component of ground reaction force
     //printf("%f\n", grf_z);
     if (grf_z == 0) {
+        //printf("%f\n", d->time);
         jump_dist = mju_dist3(jump_posInit, jump_pos);
         time_landing = d->time;
     }
