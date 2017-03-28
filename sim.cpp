@@ -39,7 +39,7 @@ const int n_cols_out = 15; // number of columns of output file
 
 std::array<std::array<float, n_quats>, n_rows_initial> qposdata;//i rows, j cols
 std::array<std::array<float, n_cols_out>, n_rows_initial> outputdata;//i rows, j cols
-std::array<std::array<float, 10>, 1> inputdata_qpos;//i rows, j cols
+std::array<std::array<float, 11>, 1> inputdata_qpos;//i rows, j cols
 std::array<std::array<float, 3>, 1000> inputdata_inforces;//3 input forces, 1000 rows
 std::ifstream datfile_qpos("qposInit.dat");
 std::ifstream datfile_inforces("inforces.dat");
@@ -750,7 +750,7 @@ void setcontrol(mjtNum time, mjtNum* ctrl, int nu)
     ctrl[0] = inputdata_inforces[counter][0];//ankle extensor force
     ctrl[1] = inputdata_inforces[counter][1];//knee servo position
     ctrl[2] = inputdata_inforces[counter][2];//hip extensor force
-    printf(" %f \n", d->qpos[7]);
+    //printf(" %f \n", d->qpos[7]);
     //printf("%f\n", d->ctrl[1]);
     }
 
@@ -801,11 +801,13 @@ void advance(void)
         time_landing = time_landing;
     }
     if (counter == number_of_samples) {
-        printf("total jump distance = %f at landing time %f \n", jump_dist, time_landing);
+        //printf("total jump distance = %f at landing time %f \n", jump_dist, time_landing);
         
     }
 
-    //printf("%f\n", );
+    //printf("%f\n", d->ten_moment[7]);
+
+
     mj_tendon(m, d);
 
     mj_transmission(m, d);
@@ -1039,7 +1041,7 @@ int main(int argc, const char** argv)
     std::ifstream datfile_inforces("inforces.dat");
 
     for (int i = 0; i <= 1; i++) {
-        for (int j = 0; j <= 10; j++) {
+        for (int j = 0; j < 11; j++) {
             datfile_qpos >> inputdata_qpos[i][j];
         }
     }
@@ -1126,7 +1128,7 @@ int main(int argc, const char** argv)
   //mju_copy(d->qpos, m->key_qpos, m->nq*1);
   
 
-    for (int i = 0; i<=m->nq; i++) {
+    for (int i = 0; i < m->nq; i++) {
         m->qpos0[i] = inputdata_qpos[0][i];
     }   
     //now account for free joint
@@ -1136,6 +1138,10 @@ int main(int argc, const char** argv)
     printf("pos ref\n");
     for (int i = 0; i < m->nq; i++) {
         printf("%f\n", m->qpos0[i]);
+    }
+
+    for (int i = 0; i < m->nq; i++) {
+        m->qpos_spring[i] = m->qpos0[i];
     }
 
     printf("spring ref\n");
