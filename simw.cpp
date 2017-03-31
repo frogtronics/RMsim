@@ -779,9 +779,13 @@ void advance(void)
     ik();
     setcontrol(d->time, d->ctrl, m->nu);
     mj_step(m, d);
+	mj_fwdVelocity(m, d);
+	mj_tendon(m, d);
+    mj_transmission(m, d);
     // mj_inverse(m, d);
-    //printf("%f\n", d->xpos[6]);
-    counter ++;
+    //printf("%f,     %f\n", d->actuator_velocity[0], d->ten_velocity[0]);// confirm that actuator and tend velocity same
+    printf("tend length %f\n", d->ten_length[0]);
+	counter ++;
     //usleep(10000); mac os
 	Sleep(10);
     double camdx = 0;
@@ -828,9 +832,7 @@ void advance(void)
     //printf("%f\n", d->ten_moment[7]);
 
 
-    mj_tendon(m, d);
 
-    mj_transmission(m, d);
     // if (counter == 2) {
     //     //std::string input = "";
     //     //std::cout << "Please press <ENTER> to start simulation:\n>";
