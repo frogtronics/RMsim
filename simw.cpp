@@ -9,6 +9,7 @@
 #include "stdlib.h"
 #include "string.h"
 #include <mutex>
+#include <windows.h>
 
 //--------------FOR FILE OPENING
 #include <array>
@@ -768,7 +769,8 @@ void advance(void)
     // mj_inverse(m, d);
     //printf("%f\n", d->xpos[6]);
     counter ++;
-    usleep(10000);
+    //usleep(10000); mac os
+	Sleep(10);
     double camdx = 0;
     double camdy = -0.1;
     if (counter == 1) {

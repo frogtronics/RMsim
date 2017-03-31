@@ -1,0 +1,5 @@
+COMMON=/O2 /MT /EHsc /I../include ../bin/mujoco140.lib /Fe../RMsim/
+
+all:
+	cl $(COMMON) simw.cpp    ../bin/glfw3.lib
+	del *.obj
