@@ -88,3 +88,4 @@ GitHub.sublime-settings
 *.lib
 mjkey.txt
 makefile
+MUJOCO_LOG.TXT
