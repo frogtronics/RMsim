@@ -61,11 +61,12 @@ bool is_takeoff = true;
 double qa_takeoff = 0;
 std::array<double, 500> qbuffer;
 
+double li = 0;
 //-------------------------------- global variables -------------------------------------
 
 // model
 char error[1000];
-mjModel* m = mj_loadXML("3SegRMdevel01.xml", NULL, error, 1000);
+mjModel* m = mj_loadXML("5SegRM.xml", NULL, error, 1000);
 mjData* d = 0;
 char lastfile[1000] = "";
 
@@ -294,7 +295,7 @@ void loadmodel(GLFWwindow* window, const char* filename, const char* xmlstring)
     // make sure one source is given
     if( !filename && !xmlstring )
         return;
-    filename = "3SegRMdevel01.xml";
+    filename = "5SegRM.xml";
     // load and compile
     //char error[1000] = "could not load binary model, you silly person";
     mjModel* mnew = 0;
@@ -764,7 +765,7 @@ void setcontrol(mjtNum time, mjtNum* ctrl, int nu)
     ctrl[2] = inputdata_inforces[counter][2];//hip extensor force
     
     // --- apply force to COM from forelimbs ---
-    //d->xfrc_applied[6*6 + 2] = inputdata_inforces[counter][3]; // body 6 (from 0) is com
+    d->xfrc_applied[6*6 + 2] = inputdata_inforces[counter][3]; // body 6 (from 0) is com
     }
     //printf("%f\n", d->qpos[8]);
 
@@ -773,6 +774,12 @@ void setcontrol(mjtNum time, mjtNum* ctrl, int nu)
 // simulation
 void advance(void)
 {
+	//printf("%i\n", counter);
+	if (counter == 0) {
+		for (int i = 0; i<=11; i++) {
+			printf("qpos %f\n", d->qpos[i]);
+		}
+	}
     //mj_forward(m, d);
     // quatpos();// function to input kinematics data into qpos, qvel, qacc
     //mopos();
@@ -784,7 +791,7 @@ void advance(void)
     mj_transmission(m, d);
     // mj_inverse(m, d);
     //printf("%f,     %f\n", d->actuator_velocity[0], d->ten_velocity[0]);// confirm that actuator and tend velocity same
-    printf("tend length %f\n", d->ten_length[0]);
+    //printf("tend length %f\n", d->ten_length[0] - li);
 	counter ++;
     //usleep(10000); mac os
 	Sleep(10);
@@ -842,6 +849,7 @@ void advance(void)
     // if (counter == number_of_samples) {
     //     printf("total jump distance = %f in %i iterations\n", jump_dist, number_of_samples);
     // }
+
 
 
 
@@ -1170,8 +1178,11 @@ int main(int argc, const char** argv)
     for (int i = 0; i < m->nq; i++) {
         printf("%f\n", m->qpos_spring[i]);
     }
+	
+	
     advance();
-
+	li = d->ten_length[0];
+	printf("Li = %f\n", li);
 
   // main loop
   for (int itrial = 0; itrial < n_trials; itrial++ ) {//----------INSERT LOOP HERE FOR LOOPING THROUGH MULTIPLE QUAT FILES 
