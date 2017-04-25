@@ -65,7 +65,7 @@
 							<geom name="jointSphere_hip" type="sphere" pos="0 0. 0" size="0.003" rgba=".3 .9 .3 .4"/>
 							<site name="t_hip_side" pos="-0.003 0 0" size="0.0003" rgba="0 1 1 1"/>
 							<joint name="j_hip" type="hinge" axis="0 1 0" pos="0 0 0"/>
-							<geom name="snoutSphere" type="sphere" pos="0 0. 0" size="0.003" rgba="0 0 1 0.4"/>
+							<geom name="snoutSphere" type="sphere" pos="0 0. 0.0197439" size="0.003" rgba="0 0 1 0.4"/>
 						</body>
 					</body>	
 				</body>	
