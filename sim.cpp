@@ -35,7 +35,7 @@ const int n_rows_initial = 1000;//number of video frames -will be modified later
 int n_rows = 1000;
 const int n_quats = 20; //number of quaternion elements = dof * 4 = number of joints * 4
 const int n_cols_out = 24; // number of columns of output file
-
+float pos_dataout[10000][50];
 
 std::array<std::array<float, n_quats>, n_rows_initial> qposdata;//i rows, j cols
 std::array<std::array<float, n_cols_out>, n_rows_initial> outputdata;//i rows, j cols
@@ -64,7 +64,7 @@ std::array<double, 500> qbuffer;
 
 // model
 char error[1000];
-mjModel* m = mj_loadXML("3SegRMdevel01.xml", NULL, error, 1000);
+mjModel* m = mj_loadXML("5SegRM.xml", NULL, error, 1000);
 mjData* d = 0;
 char lastfile[1000] = "";
 
@@ -293,7 +293,7 @@ void loadmodel(GLFWwindow* window, const char* filename, const char* xmlstring)
     // make sure one source is given
     if( !filename && !xmlstring )
         return;
-    filename = "3SegRMdevel01.xml";
+    filename = "5SegRM.xml";
     // load and compile
     //char error[1000] = "could not load binary model, you silly person";
     mjModel* mnew = 0;
@@ -765,7 +765,18 @@ void setcontrol(mjtNum time, mjtNum* ctrl, int nu)
     // --- apply force to COM from forelimbs ---
     //d->xfrc_applied[6*6 + 2] = inputdata_inforces[counter][3]; // body 6 (from 0) is com
     }
-    //printf("%f\n", d->qpos[8]);
+
+    //-----SAVE KINEMATICS---
+    int last_bod = (m->nbody) * 3;
+    for (int j = 0; j < last_bod; j++) {
+        pos_dataout[counter][j] = d->xpos[j];//skip world body
+    }
+    //--- GEt position of snout, not included in xpos
+    int snout_id = mj_name2id(m,  mjOBJ_GEOM, "snoutSphere");
+    int snout_pos = snout_id * 3;
+    for (int j = last_bod; j < last_bod + 3; j++) {
+        pos_dataout[counter][j] = d->geom_xpos[snout_pos + j - last_bod];
+    }
 
 }
 
@@ -1050,6 +1061,7 @@ int main(int argc, const char** argv)
   // print version, check compatibility
 
     // Get number of time samples
+
     number_of_samples = 0;
     std::string line;
     while (std::getline(datfile_inforces, line)) {
@@ -1088,6 +1100,7 @@ int main(int argc, const char** argv)
   // activate MuJoCo license
   mj_activate("mjkey.txt");
   printf("atan test %f\n", 2.0);
+  printf("test!!!!\n");
   
   // install control callback
   //mjcb_control = mycontroller;
@@ -1224,6 +1237,17 @@ int main(int argc, const char** argv)
             fprintf(f, "\n");
         }
         fclose(f);
+
+    FILE *f1 = fopen("savedData_kinematics.txt", "w");//a for append, t for text mode
+
+    
+    for(int i = 1; i < number_of_samples; i++) {
+        for (int j = 0; j < (m->nbody) * 3 + 3; j++)
+           fprintf(f1, "%f\t", pos_dataout[i][j]); 
+        fprintf(f1, "\n");
+
+    }
+    fclose(f1);
 
     } //----------------------------------------------------------------itr trial loop
 
