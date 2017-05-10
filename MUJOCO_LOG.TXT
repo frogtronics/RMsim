@@ -346,3 +346,51 @@ ERROR: Missing or invalid license activation
 Mon Apr 24 14:59:26 2017
 WARNING: OpenGL error 0x500 in mjr_makeContext
 
+Fri May  5 15:26:06 2017
+ERROR: Missing or invalid license activation
+
+Fri May  5 15:26:07 2017
+WARNING: OpenGL error 0x500 in mjr_makeContext
+
+Fri May  5 15:26:21 2017
+ERROR: Missing or invalid license activation
+
+Fri May  5 15:26:22 2017
+WARNING: OpenGL error 0x500 in mjr_makeContext
+
+Fri May  5 15:26:45 2017
+ERROR: Missing or invalid license activation
+
+Fri May  5 15:26:45 2017
+WARNING: OpenGL error 0x500 in mjr_makeContext
+
+Fri May  5 15:26:58 2017
+ERROR: Missing or invalid license activation
+
+Fri May  5 15:26:58 2017
+WARNING: OpenGL error 0x500 in mjr_makeContext
+
+Fri May  5 15:27:12 2017
+ERROR: Missing or invalid license activation
+
+Fri May  5 15:27:12 2017
+WARNING: OpenGL error 0x500 in mjr_makeContext
+
+Fri May  5 15:27:26 2017
+ERROR: Missing or invalid license activation
+
+Fri May  5 15:27:26 2017
+WARNING: OpenGL error 0x500 in mjr_makeContext
+
+Fri May  5 15:27:38 2017
+ERROR: Missing or invalid license activation
+
+Fri May  5 15:27:38 2017
+WARNING: OpenGL error 0x500 in mjr_makeContext
+
+Fri May  5 15:28:10 2017
+ERROR: Missing or invalid license activation
+
+Fri May  5 15:28:10 2017
+WARNING: OpenGL error 0x500 in mjr_makeContext
+
