@@ -1,0 +1,18 @@
+				Ratio														
+Nominal mass (g)	11.4	mass for scaled model (g)	11.4	1														
+Body segment	Volume (mm3)	Density (g/cm3)	volume weighting (estimated at 0.05 for body and pelvis for now)	density weighted avg	segment	lumped segment mass  (from uCT)	scaled masses	scaled masses (g)	avg density	length	length scaled	cylinder volume (cm3)	radius (cm)	radius (mm)	radius (m)	MOI xx	MOI yy	MOI zz
+Body skeleton	260.7	1.93	0.05	1.0997	Body	0.0072	0.0072	7.2	1.0997	0.0197439	0.0197439	6.547240156	1.027492584	10.27492584	0.010274926	4.23926E-07	4.23926E-07	3.80067E-07
+Body soft tissues	NA	1.056	0.95		pelvis	0.0013	0.0013	1.3	1.0997	NA		1.182140584						
+Pelvic skeleton	67.8	1.93	0.05	1.0997	thigh	0.00077613	0.00077613	0.77613	1.080623152	0.0177912	0.0177912	0.718224479	0.358503593	3.585035927	0.003585036	2.2966E-08	2.2966E-08	4.9876E-09
+Pelvic soft tissues	NA	1.056	0.95		shank	0.00036153	0.00036153	0.36153	1.130072739	0.0204671	0.0204671	0.31991746	0.223078054	2.23078054	0.002230781	1.30703E-08	1.30703E-08	8.99556E-10
+Thigh skeleton	20.2	1.93	0.028172943	1.080623152	tarsus	0.00015557	0.00015557	0.15557	1.154644041	0.0080277	0.0080277	0.134734164	0.231158214	2.311582145	0.002311582	1.04328E-09	1.04328E-09	4.15637E-10
+Thigh soft tissues	717	1.056	0.971827057		foot	0.00016292	0.00016292	0.16292	1.201548335	0.01	0.01	0.135591716	0.20776989	2.077698899	0.002077699	1.53349E-09	1.53349E-09	3.51649E-10
+Shank skeleton	25.4	1.93	0.084751418	1.130072739														
+Shank soft tissues	299.7	1.056	0.915248582															
+Tarsus skeleton	14.3	1.93	0.112865036	1.154644041														
+Tarsus soft tissues	126.7	1.056	0.887134964															
+Foot skeleton	20.5	1.93	0.166531275	1.201548335														
+Foot soft tissues	123.1	1.056	0.833468725			mass 1		mass2	length 1	length 2								
+						27		10	3	2.15443469	10							
+																		
+Body /Pelvis soft tissue	7779.7	1.056																
